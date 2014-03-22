@@ -11,5 +11,20 @@
 @interface MTKViewController : UIViewController
 
 - (IBAction)onOkClicked:(id)sender;
+- (IBAction)onEqualClicked:(id)sender;
+- (IBAction)onSlideMoved:(id)sender;
+- (IBAction)onStepClicked:(id)sender;
+
+@property (weak) IBOutlet UITextField * textField;
+@property (weak) IBOutlet UILabel * textView;
+
+@property (weak) IBOutlet UITextField * num1TextField;
+@property (weak) IBOutlet UITextField * num2TextField;
+@property (weak) IBOutlet UITextField * resultTextField;
+
+@property (weak) IBOutlet UISlider * slider1;
+@property (weak) IBOutlet UISlider * slider2;
+
+@property (weak) IBOutlet UITextField * tabuadaTextField;
 
 @end
