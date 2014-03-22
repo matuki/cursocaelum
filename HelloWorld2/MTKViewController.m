@@ -26,4 +26,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)onOkClicked:(id)sender
+{
+    NSLog(@"It works!");
+}
+
+
 @end

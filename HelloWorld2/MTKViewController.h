@@ -10,4 +10,6 @@
 
 @interface MTKViewController : UIViewController
 
+- (IBAction)onOkClicked:(id)sender;
+
 @end
