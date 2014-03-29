@@ -7,14 +7,31 @@
 //
 
 #import "AppDelegate.h"
+#import "ListaContatosViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Estrutura de dados que será injetada no ListaContatosViewController;
+    self.contatos = [[NSMutableArray alloc]init];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+//    FormularioContatoViewController * form = [[FormularioContatoViewController alloc] init];
+    
+    ListaContatosViewController * lista = [[ListaContatosViewController alloc] init];
+    
+    // Injeção da dependência da lista
+    lista.contatos = self.contatos;
+    
+    // Esse init recebe um view controller para que seja um root do navigation controller.
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:lista];
+    // O título é confiugrado dentro da lista pois ela é quem "define" que título o nav tem que mostrar.
+    
+    self.window.rootViewController = nav;
+    
+    self.window.backgroundColor = [UIColor blueColor];
     [self.window makeKeyAndVisible];
     return YES;
 }

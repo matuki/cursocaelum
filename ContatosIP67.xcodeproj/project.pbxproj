@@ -16,6 +16,10 @@
 		A509294A18E6F0F500F9CBA2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A509294918E6F0F500F9CBA2 /* Default.png */; };
 		A509294C18E6F0F500F9CBA2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A509294B18E6F0F500F9CBA2 /* Default@2x.png */; };
 		A509294E18E6F0F500F9CBA2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A509294D18E6F0F500F9CBA2 /* Default-568h@2x.png */; };
+		A509295718E6F51A00F9CBA2 /* FormularioContatoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A509295518E6F51A00F9CBA2 /* FormularioContatoViewController.m */; };
+		A509295818E6F51A00F9CBA2 /* FormularioContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A509295618E6F51A00F9CBA2 /* FormularioContatoViewController.xib */; };
+		A509295B18E70A6100F9CBA2 /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = A509295A18E70A6100F9CBA2 /* Contato.m */; };
+		A509295E18E73F8800F9CBA2 /* ListaContatosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A509295D18E73F8800F9CBA2 /* ListaContatosViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,13 @@
 		A509294918E6F0F500F9CBA2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A509294B18E6F0F500F9CBA2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A509294D18E6F0F500F9CBA2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A509295418E6F51A00F9CBA2 /* FormularioContatoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormularioContatoViewController.h; sourceTree = "<group>"; };
+		A509295518E6F51A00F9CBA2 /* FormularioContatoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormularioContatoViewController.m; sourceTree = "<group>"; };
+		A509295618E6F51A00F9CBA2 /* FormularioContatoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormularioContatoViewController.xib; sourceTree = "<group>"; };
+		A509295918E70A6000F9CBA2 /* Contato.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contato.h; sourceTree = "<group>"; };
+		A509295A18E70A6100F9CBA2 /* Contato.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contato.m; sourceTree = "<group>"; };
+		A509295C18E73F8800F9CBA2 /* ListaContatosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaContatosViewController.h; sourceTree = "<group>"; };
+		A509295D18E73F8800F9CBA2 /* ListaContatosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaContatosViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +91,14 @@
 			children = (
 				A509294618E6F0F500F9CBA2 /* AppDelegate.h */,
 				A509294718E6F0F500F9CBA2 /* AppDelegate.m */,
+				A509295418E6F51A00F9CBA2 /* FormularioContatoViewController.h */,
+				A509295518E6F51A00F9CBA2 /* FormularioContatoViewController.m */,
+				A509295618E6F51A00F9CBA2 /* FormularioContatoViewController.xib */,
 				A509293E18E6F0F500F9CBA2 /* Supporting Files */,
+				A509295918E70A6000F9CBA2 /* Contato.h */,
+				A509295A18E70A6100F9CBA2 /* Contato.m */,
+				A509295C18E73F8800F9CBA2 /* ListaContatosViewController.h */,
+				A509295D18E73F8800F9CBA2 /* ListaContatosViewController.m */,
 			);
 			path = ContatosIP67;
 			sourceTree = "<group>";
@@ -154,6 +172,7 @@
 				A509294A18E6F0F500F9CBA2 /* Default.png in Resources */,
 				A509294C18E6F0F500F9CBA2 /* Default@2x.png in Resources */,
 				A509294E18E6F0F500F9CBA2 /* Default-568h@2x.png in Resources */,
+				A509295818E6F51A00F9CBA2 /* FormularioContatoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +185,9 @@
 			files = (
 				A509294418E6F0F500F9CBA2 /* main.m in Sources */,
 				A509294818E6F0F500F9CBA2 /* AppDelegate.m in Sources */,
+				A509295718E6F51A00F9CBA2 /* FormularioContatoViewController.m in Sources */,
+				A509295B18E70A6100F9CBA2 /* Contato.m in Sources */,
+				A509295E18E73F8800F9CBA2 /* ListaContatosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
