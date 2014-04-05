@@ -10,7 +10,17 @@
 #import "Contato.h"
 #import "FormularioContatoViewControllerDelegate.h"
 
-@interface ListaContatosViewController : UITableViewController <FormularioContatoViewControllerDelegate>
+
+// Quando se faz isso todas as classes do framework são importadas
+#import <MessageUI/MessageUI.h>
+
+@interface ListaContatosViewController : UITableViewController <FormularioContatoViewControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+
+// Atributo da classe
+{
+    Contato * contatoSelecionado;
+}
+
 
 @property (weak) NSMutableArray * contatos;
 
@@ -20,5 +30,8 @@
 - (void) contatoAdicionado: (Contato *) contato;
 
 - (void) contatoAlterado:(Contato *)contato;
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+
 
 @end

@@ -64,6 +64,11 @@
     // Aqui a arvore de views ja foi iniciada e os Outlets ligados
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    UILongPressGestureRecognizer * lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(exibeMaisAcoes:)];
+    
+    [self.tableView addGestureRecognizer:lp];
 }
 
 - (void)exibeForm
@@ -157,6 +162,100 @@
 {
     NSLog(@"O contato %@ foi alterado.", contato);
     self.linhaSelecionada = [self.contatos indexOfObject:contato];
+}
+
+// Esse tipo de callback é chamado várias vezes (inicio, meio e fim)
+- (void) exibeMaisAcoes:(UIGestureRecognizer *) gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan)
+    {
+        CGPoint ponto = [gesture locationInView:self.tableView];
+        NSIndexPath * ip = [self.tableView indexPathForRowAtPoint:ponto];
+        contatoSelecionado = self.contatos[ip.row];
+        
+        
+        UIActionSheet * as = [[UIActionSheet alloc] initWithTitle:contatoSelecionado.nome delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Ligar", @"Enviar email", @"Mostrar mapa", @"Abrir site", nil];
+        
+        [as showInView:self.view];
+    }
+}
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            [self ligar];
+            break;
+        case 1:
+            [self enviarEmail];
+            break;
+        case 2:
+            [self mostrarMapa];
+            break;
+        case 3:
+            [self abreSite];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void) ligar
+{
+    NSLog(@"ligar");
+    
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if ([device.model isEqualToString:@"iPhone"]) {
+        // para abrir o dialer preenchido sem ligar, use @"telprompt:"
+        NSString * strUrl = [NSString stringWithFormat:@"tel:%@", contatoSelecionado.telefone];
+        [self abrirAplicativoEmUrl:strUrl];
+    } else {
+        UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Pobre!" message:@"Compre um iPhone" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [av show];
+    }
+}
+
+- (void) enviarEmail
+{
+    NSLog(@"enviar email");
+    if([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController * mail = [[MFMailComposeViewController alloc]init];
+        
+        mail.mailComposeDelegate = self;
+        
+        [mail setToRecipients:@[contatoSelecionado.email]];
+        [mail setSubject:@"Contatos (assunto)"];
+        
+        [self presentViewController:mail animated:YES completion:nil];
+    } else {
+        UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Sem Conta Email" message:@"Não existe conta de email configurada" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [av show];
+    }
+    
+}
+
+- (void) mostrarMapa
+{
+    NSLog(@"mostrar mapa");
+    NSString * strUrl = [[NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", contatoSelecionado.endereco] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [self abrirAplicativoEmUrl:strUrl];
+}
+
+- (void) abreSite
+{
+    NSLog(@"abre site");
+    [self abrirAplicativoEmUrl:contatoSelecionado.site];
+}
+
+- (void) abrirAplicativoEmUrl:(NSString *) url
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    // Aqui, como foi chamado o presentViewControllerAnimated, não precisa especificar qual é o controller a ser dismiss
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

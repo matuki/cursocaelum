@@ -20,6 +20,7 @@
 		A509295818E6F51A00F9CBA2 /* FormularioContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A509295618E6F51A00F9CBA2 /* FormularioContatoViewController.xib */; };
 		A509295B18E70A6100F9CBA2 /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = A509295A18E70A6100F9CBA2 /* Contato.m */; };
 		A509295E18E73F8800F9CBA2 /* ListaContatosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A509295D18E73F8800F9CBA2 /* ListaContatosViewController.m */; };
+		A5ED8AC818F091A100D4816F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5ED8AC718F091A100D4816F /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		A509295C18E73F8800F9CBA2 /* ListaContatosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaContatosViewController.h; sourceTree = "<group>"; };
 		A509295D18E73F8800F9CBA2 /* ListaContatosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaContatosViewController.m; sourceTree = "<group>"; };
 		A5ED8AC618F06A5A00D4816F /* FormularioContatoViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormularioContatoViewControllerDelegate.h; sourceTree = "<group>"; };
+		A5ED8AC718F091A100D4816F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5ED8AC818F091A100D4816F /* MessageUI.framework in Frameworks */,
 				A509293818E6F0F500F9CBA2 /* UIKit.framework in Frameworks */,
 				A509293A18E6F0F500F9CBA2 /* Foundation.framework in Frameworks */,
 				A509293C18E6F0F500F9CBA2 /* CoreGraphics.framework in Frameworks */,
@@ -63,6 +66,7 @@
 		A509292B18E6F0F400F9CBA2 = {
 			isa = PBXGroup;
 			children = (
+				A5ED8AC718F091A100D4816F /* MessageUI.framework */,
 				A509293D18E6F0F500F9CBA2 /* ContatosIP67 */,
 				A509293618E6F0F500F9CBA2 /* Frameworks */,
 				A509293518E6F0F500F9CBA2 /* Products */,
