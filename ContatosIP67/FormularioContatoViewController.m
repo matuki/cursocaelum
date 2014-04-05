@@ -48,12 +48,38 @@
     return self;
 }
 
+- (id) initWithContato:(Contato *) contato
+{
+    self = [super init];
+    
+    if (self) {
+        self.contato = contato;
+        self.navigationItem.title = @"Edição";
+        
+        UIBarButtonItem * btn = [[UIBarButtonItem alloc]initWithTitle:@"Salvar" style:UIBarButtonItemStylePlain target:self action:@selector(alterarContato)];
+        
+        self.navigationItem.rightBarButtonItem = btn;
+    }
+    
+    return self;
+}
+
 // Ordem: #2
 - (void)viewDidLoad
 {
     // Aqui a arvore de views ja foi iniciada e os Outlets ligados
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // Se tem uma referencia pro self.contato, é porque é uma alteração e nao uma inclusao
+    if (self.contato) {
+        self.nome.text = self.contato.nome;
+        self.telefone.text = self.contato.telefone;
+        self.email.text = self.contato.email;
+        self.site.text = self.contato.site;
+        self.endereco.text = self.contato.endereco;
+        
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -96,13 +122,15 @@
 
 - (Contato *)pegaDadosDoFormulario {
     
-    Contato * contato = [[Contato alloc]init];
+    if (!self.contato) {
+        self.contato = [[Contato alloc]init];
+    }
     
-    contato.nome = self.nome.text;
-    contato.telefone = self.telefone.text;
-    contato.email = self.email.text;
-    contato.endereco = self.endereco.text;
-    contato.site = self.site.text;
+    self.contato.nome = self.nome.text;
+    self.contato.telefone = self.telefone.text;
+    self.contato.email = self.email.text;
+    self.contato.endereco = self.endereco.text;
+    self.contato.site = self.site.text;
     
     self.nome.text = @"";
     self.telefone.text = @"";
@@ -110,7 +138,7 @@
     self.endereco.text = @"";
     self.site.text = @"";
     
-    return contato;
+    return self.contato ;
 }
 
 - (void)criarContato {
@@ -128,6 +156,13 @@
     // Esse é só para quando nao tiver navigation view controller
     //    [self dismissViewControllerAnimated:YES completion:nil];
     
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) alterarContato
+{
+    [self pegaDadosDoFormulario];
+    // Cuidado com outras mensagens parecidas pop(...) aqui
     [self.navigationController popViewControllerAnimated:YES];
 }
 

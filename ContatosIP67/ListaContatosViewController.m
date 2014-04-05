@@ -25,6 +25,8 @@
         self.navigationItem.rightBarButtonItem = btn;
         // seletor acima teve respeitar um contrato em que tem nenhum parametro, um parametro (sender) ou dois parametros (sender e ...).
         
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
+        
     }
     
     return self;
@@ -84,6 +86,44 @@
     cell.textLabel.text = contato.nome;
     
     return cell;
+}
+
+
+// Callback = o usuario está confirmando uma edição
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Significa que o usuario quer apagar
+        // Primeiro se deve apagar o model e depois a view, se nao da pau pois a view consulta o model se for apagada
+        [self.contatos removeObjectAtIndex:indexPath.row];
+        
+        // Açúcar sintatico para criar array @[indexPath]
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        // Tem outros: Exemplo: ara criar dicionário @{@"chave":obj{@"object}}
+        // Tem sugar para criar ns number tambem: @(numberVar)
+//        NSNumber * number = @2;
+//        int numberInt = 3;
+//        NSNumber * number3 = @(numberInt);
+    }
+    
+}
+
+- (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    Contato * contato = self.contatos[sourceIndexPath.row];
+    
+    [self.contatos removeObjectAtIndex:sourceIndexPath.row];
+    [self.contatos insertObject:contato atIndex:destinationIndexPath.row];
+    
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Contato * contato = self.contatos[indexPath.row];
+    FormularioContatoViewController * form = [[FormularioContatoViewController alloc] initWithContato:contato];
+    
+    [self.navigationController pushViewController:form animated:YES];
 }
 
 @end

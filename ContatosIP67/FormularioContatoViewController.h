@@ -14,6 +14,9 @@
 // Default é atomic
 @property (weak) NSMutableArray * contatos;
 
+// Usado na edição
+@property (strong, atomic) Contato * contato;
+
 @property (weak, nonatomic) IBOutlet UITextField *nome;
 
 @property (weak, nonatomic) IBOutlet UITextField *telefone;
@@ -28,4 +31,7 @@
 - (IBAction)proximoCampo:(UITextField *)campoAtual;
 
 - (Contato *)pegaDadosDoFormulario;
+
+
+- (id) initWithContato:(Contato *) contato;
 @end
