@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Contato : NSObject
+@interface Contato : NSObject <NSCoding>
 
 // Chave é só para atributos
 // Gerado a partir do @synthesize no .m
