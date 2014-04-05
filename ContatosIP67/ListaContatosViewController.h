@@ -7,9 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Contato.h"
+#import "FormularioContatoViewControllerDelegate.h"
 
-@interface ListaContatosViewController : UITableViewController
+@interface ListaContatosViewController : UITableViewController <FormularioContatoViewControllerDelegate>
 
 @property (weak) NSMutableArray * contatos;
+
+// Para tipo primitivo, é sempre assign.
+@property (assign, atomic) NSInteger linhaSelecionada;
+
+- (void) contatoAdicionado: (Contato *) contato;
+
+- (void) contatoAlterado:(Contato *)contato;
 
 @end

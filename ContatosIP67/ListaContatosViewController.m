@@ -17,6 +17,7 @@
     self = [super init];
     
     if (self) {
+        self.linhaSelecionada = -1;
         self.navigationItem.title = @"Contatos";
         
         UIBarButtonItem * btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(exibeForm)];
@@ -34,8 +35,28 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    // Não atuar para recuperar estado de UI aqui porque ela pode ainda não ter sido carregada/construída.
+    // Aqui, por exemplo, a tabela pode ainda nao ter sido carregada.
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // Aqui é o lugar para recuperar estado da UI ou qualquer atuação
+    
+    if (self.linhaSelecionada > -1) {
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.linhaSelecionada inSection:0];
+        
+        // UITableViewScrollPositionNone rola somente o suficiente para a linha afetada aparecer
+        [self.tableView selectRowAtIndexPath:indexPath animated:animated scrollPosition:UITableViewScrollPositionNone];
+        
+        // Isso é só um workaround para um bug. Tem que executar outra mensagem que utilize o UITableViewScrollPositionNone para que efetivamente role para a posição
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:animated];
+        
+        self.linhaSelecionada = -1;
+    }
 }
 
 - (void)viewDidLoad
@@ -49,8 +70,7 @@
 {
     FormularioContatoViewController * form = [[FormularioContatoViewController alloc]init];
     
-    form.contatos = self.contatos;
-
+    form.delegate = self;
     // Isso mostraria a tela sem o navigation controler
 //    [self presentViewController:form animated:YES completion:nil];
     
@@ -122,8 +142,21 @@
 {
     Contato * contato = self.contatos[indexPath.row];
     FormularioContatoViewController * form = [[FormularioContatoViewController alloc] initWithContato:contato];
+    form.delegate = self;
     
     [self.navigationController pushViewController:form animated:YES];
+}
+
+- (void) contatoAdicionado: (Contato *) contato
+{
+    [self.contatos addObject:contato];
+    self.linhaSelecionada = [self.contatos indexOfObject:contato];
+}
+
+- (void) contatoAlterado:(Contato *)contato
+{
+    NSLog(@"O contato %@ foi alterado.", contato);
+    self.linhaSelecionada = [self.contatos indexOfObject:contato];
 }
 
 @end

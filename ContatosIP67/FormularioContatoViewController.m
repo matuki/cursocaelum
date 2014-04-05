@@ -138,15 +138,16 @@
     self.endereco.text = @"";
     self.site.text = @"";
     
-    return self.contato ;
+    return self.contato;
 }
 
 - (void)criarContato {
     Contato * contato = [self pegaDadosDoFormulario];
     
-    [self.contatos addObject:contato];
+    [self.delegate contatoAdicionado: contato];
+    [self.navigationController popViewControllerAnimated:YES];
     
-    NSLog(@"Contato adicionado: %@", self.contatos);
+    NSLog(@"Contato adicionado: %@", contato);
     
     // Herdado do ViewController. Parametro bool YES = force (mesmo que o usuario esteja digitando.
     [self.view endEditing:YES];
@@ -162,6 +163,11 @@
 - (void) alterarContato
 {
     [self pegaDadosDoFormulario];
+    
+    if ([self.delegate respondsToSelector:@selector(contatoAlterado:)]) {
+        [self.delegate contatoAlterado:self.contato];
+    }
+    
     // Cuidado com outras mensagens parecidas pop(...) aqui
     [self.navigationController popViewControllerAnimated:YES];
 }

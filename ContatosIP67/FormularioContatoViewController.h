@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Contato.h"
+#import "ListaContatosViewController.h"
+#import "FormularioContatoViewControllerDelegate.h"
 
 @interface FormularioContatoViewController : UIViewController
 
 // Default é atomic
-@property (weak) NSMutableArray * contatos;
+//@property (weak) NSMutableArray * contatos;
 
 // Usado na edição
 @property (strong, atomic) Contato * contato;
+
+@property (weak, atomic) id<FormularioContatoViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *nome;
 
