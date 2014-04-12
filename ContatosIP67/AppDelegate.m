@@ -49,6 +49,7 @@
     
     // Para usar isso, tem que incluir o MapKit.framework clicando no nome do projeto.
     ContatosNoMapaViewController * mapa = [[ContatosNoMapaViewController alloc] init];
+    mapa.contatos = self.contatos;
     UINavigationController * navMapa = [[UINavigationController alloc] initWithRootViewController:mapa];
     
     UITabBarController * tabs = [[UITabBarController alloc] init];

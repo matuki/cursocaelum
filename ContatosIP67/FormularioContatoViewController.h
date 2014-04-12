@@ -37,8 +37,11 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *site;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *rodinha;
+
 // Arrastado do evento didSendoOnExit (bota direito em cima do text field).
-- (IBAction)proximoCampo:(UITextField *)campoAtual;
+// Removido pois tem essa feature no pod TPKeyboardAvoiding que estamos usando
+//- (IBAction)proximoCampo:(UITextField *)campoAtual;
 
 - (Contato *)pegaDadosDoFormulario;
 

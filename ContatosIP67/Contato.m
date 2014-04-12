@@ -55,4 +55,19 @@
     return self;
 }
 
+- (CLLocationCoordinate2D) coordinate
+{   CLLocationCoordinate2D result = CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
+    return result;
+}
+
+- (NSString *) title {
+    return self.nome;
+}
+
+- (NSString *) subtitle {
+    return self.email;
+}
+
+
+
 @end

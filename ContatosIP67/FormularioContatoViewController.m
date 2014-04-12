@@ -8,6 +8,7 @@
 
 #import "FormularioContatoViewController.h"
 #import "Contato.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface FormularioContatoViewController ()
 
@@ -116,21 +117,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)proximoCampo:(UITextField *)campoAtual {
-    
-    NSInteger proximaTag = campoAtual.tag + 1;
-    
-    UIResponder * proximoCampo = [self.view viewWithTag:proximaTag];
-    
-    // nil é o mesmo valor que 0 (false)
-    if (proximoCampo) {
-        [proximoCampo becomeFirstResponder];
-    } else {
-        [campoAtual resignFirstResponder];
-    }
-    
-    
-}
+// Removido pois tem essa feature no pod TPKeyboardAvoiding que estamos usando
+//- (IBAction)proximoCampo:(UITextField *)campoAtual {
+//    
+//    NSInteger proximaTag = campoAtual.tag + 1;
+//    
+//    UIResponder * proximoCampo = [self.view viewWithTag:proximaTag];
+//    
+//    // nil é o mesmo valor que 0 (false)
+//    if (proximoCampo) {
+//        [proximoCampo becomeFirstResponder];
+//    } else {
+//        [campoAtual resignFirstResponder];
+//    }
+//    
+//    
+//}
 
 - (Contato *)pegaDadosDoFormulario {
     
@@ -214,6 +216,24 @@
     [self.botaoFoto setBackgroundImage:img forState:UIControlStateNormal];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)buscarCoordenadas:(id)sender {
+    
+    [self.rodinha startAnimating];
+    
+    CLGeocoder * gc = [[CLGeocoder alloc] init];
+    
+    [gc geocodeAddressString:self.endereco.text completionHandler:^(NSArray *resultados, NSError *error) {
+        if (!error && [resultados count] > 0) {
+            CLPlacemark * resultado = resultados[0];
+            CLLocationCoordinate2D coordenada = resultado.location.coordinate;
+            self.latitude.text = [NSString stringWithFormat:@"%f", coordenada.latitude];
+            self.longitude.text = [NSString stringWithFormat:@"%f", coordenada.longitude];
+        }
+        
+        [self.rodinha stopAnimating];
+    }];
 }
 
 @end

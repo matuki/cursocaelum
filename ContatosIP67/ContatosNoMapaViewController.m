@@ -44,12 +44,26 @@
     return self;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.mapa addAnnotations:self.contatos];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.mapa removeAnnotations:self.contatos];
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     MKUserTrackingBarButtonItem * btn = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapa];
     
     self.navigationItem.leftBarButtonItem = btn;
+    
+    self.mapa.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,4 +72,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+// Este metodo é para customizar o que aparece no callout do pin, mostrando a foto do contato
+- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    static NSString * pool = @"poolName";
+    
+    //Tem um bug documentado nesta API. Na Documentação, diz que devemos retornar nil quando o annotation enviado for a location do usuario.
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    
+    MKPinAnnotationView * pin = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pool];
+    if (!pin) {
+        pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pool];
+    } else {
+        pin.annotation = annotation;
+    }
+    pin.pinColor = MKPinAnnotationColorPurple;
+    pin.canShowCallout = YES;
+    
+    Contato* contato = (Contato *) annotation;
+    
+    if (contato.foto) {
+        UIImageView * iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
+        iv.image = contato.foto;
+        pin.leftCalloutAccessoryView = iv;
+    }
+    
+    
+    return pin;
+}
 @end

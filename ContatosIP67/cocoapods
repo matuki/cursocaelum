@@ -1,0 +1,27 @@
+Como importar dependencias usando o Cocoapods
+
+$sudo gem install cocoapods
+$pod setup
+$vim Podfile
+
+Apertar "i" para editar. Conteúdo:
+
+platform :ios,"6.1"
+pod "TPKeyboardAvoiding"
+
+Apertar "esc"para voltar ao modo comando
+
+Shift + ZZ para salvar e sair.
+
+$pod install
+
+Vai criar Pods, Podfile.lock e ContatosIP67u.xcworkspace
+
+Usar esse .xcworkspace para abrir o projeto a partir de agora.
+
+Pode usar o $pod update para atualizar o projeto lib
+
+Referências:
+
+Cocoapods.org
+Cocoacontrols.com
