@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ListaContatosViewController.h"
+#import "ContatosNoMapaViewController.h"
 
 @implementation AppDelegate
 
@@ -43,10 +44,17 @@
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:lista];
     // O título é confiugrado dentro da lista pois ela é quem "define" que título o nav tem que mostrar.
     
-    self.window.rootViewController = nav;
-    
     self.window.backgroundColor = [UIColor blueColor];
     [self.window makeKeyAndVisible];
+    
+    // Para usar isso, tem que incluir o MapKit.framework clicando no nome do projeto.
+    ContatosNoMapaViewController * mapa = [[ContatosNoMapaViewController alloc] init];
+    UINavigationController * navMapa = [[UINavigationController alloc] initWithRootViewController:mapa];
+    
+    UITabBarController * tabs = [[UITabBarController alloc] init];
+    tabs.viewControllers = @[nav, navMapa];
+    
+    self.window.rootViewController = tabs;
     
     return YES;
 }

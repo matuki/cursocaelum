@@ -79,6 +79,18 @@
         self.site.text = self.contato.site;
         self.endereco.text = self.contato.endereco;
         
+        if (self.contato.latitude) {
+           self.latitude.text = [self.contato.latitude stringValue]; 
+        }
+        
+        if (self.contato.longitude) {
+            self.longitude.text = [self.contato.longitude stringValue];
+        }
+        
+        if (self.contato.foto) {
+            [self.botaoFoto setBackgroundImage:self.contato.foto forState:UIControlStateNormal];
+        }
+        
     }
 }
 
@@ -130,12 +142,20 @@
     self.contato.telefone = self.telefone.text;
     self.contato.email = self.email.text;
     self.contato.endereco = self.endereco.text;
+    self.contato.latitude = [NSNumber numberWithDouble: [self.latitude.text doubleValue]];
+    self.contato.longitude = [NSNumber numberWithDouble: [self.longitude.text doubleValue]];
     self.contato.site = self.site.text;
+    
+    if (self.botaoFoto.imageView.image) {
+        self.contato.foto = [self.botaoFoto backgroundImageForState:UIControlStateNormal];
+    }
     
     self.nome.text = @"";
     self.telefone.text = @"";
     self.email.text = @"";
     self.endereco.text = @"";
+    self.latitude.text = @"";
+    self.longitude.text = @"";
     self.site.text = @"";
     
     return self.contato;
@@ -170,6 +190,30 @@
     
     // Cuidado com outras mensagens parecidas pop(...) aqui
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)selecionaFoto:(id)sender {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+    } else {
+        // Exercicio: isola o codigo abaixo em outra mensagem para implementar corretamente o if/else acima
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.allowsEditing = YES;
+        picker.delegate = self;
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage * img = info[UIImagePickerControllerEditedImage];
+    
+    // Quando se seta a imagem para o estado normal, a mesma é usada também para os outros estados
+    // Essa linha de código não vai funcionar porque a propriedade img é removida por default.
+    // No iOS 7, tem que ser usado o método setBackgroundImage: para funcionar
+    [self.botaoFoto setBackgroundImage:img forState:UIControlStateNormal];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

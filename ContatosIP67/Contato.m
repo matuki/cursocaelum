@@ -32,7 +32,10 @@
     [aCoder encodeObject:self.telefone forKey:@"telefone"];
     [aCoder encodeObject:self.email forKey:@"email"];
     [aCoder encodeObject:self.endereco forKey:@"endereco"];
+    [aCoder encodeObject:self.latitude forKey:@"latitude"];
+    [aCoder encodeObject:self.longitude forKey:@"longitude"];
     [aCoder encodeObject:self.site forKey:@"site"];
+    [aCoder encodeObject:self.foto forKey:@"foto"];
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder
@@ -43,7 +46,10 @@
         self.telefone = [aDecoder decodeObjectForKey:@"telefone"];
         self.email = [aDecoder decodeObjectForKey:@"email"];
         self.endereco = [aDecoder decodeObjectForKey:@"endereco"];
+        self.latitude = [aDecoder decodeObjectForKey:@"latitude"];
+        self.longitude = [aDecoder decodeObjectForKey:@"longitude"];
         self.site = [aDecoder decodeObjectForKey:@"site"];
+        self.foto = [aDecoder decodeObjectForKey:@"foto"];
     }
 
     return self;

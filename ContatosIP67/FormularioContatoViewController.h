@@ -11,13 +11,15 @@
 #import "ListaContatosViewController.h"
 #import "FormularioContatoViewControllerDelegate.h"
 
-@interface FormularioContatoViewController : UIViewController
+@interface FormularioContatoViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 // Default é atomic
 //@property (weak) NSMutableArray * contatos;
 
 // Usado na edição
 @property (strong, atomic) Contato * contato;
+
+@property (weak, nonatomic) IBOutlet UIButton *botaoFoto;
 
 @property (weak, atomic) id<FormularioContatoViewControllerDelegate> delegate;
 
@@ -29,6 +31,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *endereco;
 
+@property (strong, nonatomic) IBOutlet UITextField *latitude;
+
+@property (weak, nonatomic) IBOutlet UITextField *longitude;
+
 @property (weak, nonatomic) IBOutlet UITextField *site;
 
 // Arrastado do evento didSendoOnExit (bota direito em cima do text field).
@@ -36,6 +42,9 @@
 
 - (Contato *)pegaDadosDoFormulario;
 
-
 - (id) initWithContato:(Contato *) contato;
+
+- (IBAction)selecionaFoto:(id)sender;
+
+
 @end

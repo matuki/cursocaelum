@@ -16,6 +16,12 @@
 {
     self = [super init];
     
+    // lista-contatos não é um nome absoluto. é um nome de recurso que pode estar apontando para o @2x, etc.
+    // Human interface guidelines - Ver detalhes na página da apple.
+    UIImage * img = [UIImage imageNamed:@"lista-contatos"];
+    UITabBarItem * tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Contatos" image:img tag:0];
+    self.tabBarItem = tabBarItem;
+    
     if (self) {
         self.linhaSelecionada = -1;
         self.navigationItem.title = @"Contatos";

@@ -30,6 +30,12 @@
 
 @property (strong, atomic) NSString *endereco;
 
+@property (strong, atomic) NSNumber *latitude;
+
+@property (strong, atomic) NSNumber *longitude;
+
 @property (strong, atomic) NSString *site;
+
+@property (strong, atomic) UIImage *foto;
 
 @end
