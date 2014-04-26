@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface Contato : NSObject <NSCoding, MKAnnotation>
+@interface Contato : NSManagedObject <NSCoding, MKAnnotation>
 
 // Chave é só para atributos
 // Gerado a partir do @synthesize no .m

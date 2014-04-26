@@ -89,7 +89,7 @@
         }
         
         if (self.contato.foto) {
-            [self.botaoFoto setBackgroundImage:self.contato.foto forState:UIControlStateNormal];
+            [self.botaoFoto setImage:self.contato.foto forState:UIControlStateNormal];
         }
         
     }
@@ -137,7 +137,16 @@
 - (Contato *)pegaDadosDoFormulario {
     
     if (!self.contato) {
-        self.contato = [[Contato alloc]init];
+        // Uma vez que é um NSManagedObject, o contato nao pode mais nascer por alloc init
+//        self.contato = [[Contato alloc]init];
+        
+        // Aqui, tem que passar o nome da **Entity** cadastrado
+        self.contato = [NSEntityDescription insertNewObjectForEntityForName:@"Contato" inManagedObjectContext:self.context];
+        
+        
+        
+        // A partir daqui o contato está "amarrado" com o contexto, todo o update nele reflete no banco de dados.
+        // O problema é que 
     }
     
     self.contato.nome = self.nome.text;
@@ -149,7 +158,7 @@
     self.contato.site = self.site.text;
     
     if (self.botaoFoto.imageView.image) {
-        self.contato.foto = [self.botaoFoto backgroundImageForState:UIControlStateNormal];
+        self.contato.foto = self.botaoFoto.imageView.image;
     }
     
     self.nome.text = @"";
@@ -213,7 +222,7 @@
     // Quando se seta a imagem para o estado normal, a mesma é usada também para os outros estados
     // Essa linha de código não vai funcionar porque a propriedade img é removida por default.
     // No iOS 7, tem que ser usado o método setBackgroundImage: para funcionar
-    [self.botaoFoto setBackgroundImage:img forState:UIControlStateNormal];
+    [self.botaoFoto setImage:img forState:UIControlStateNormal];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

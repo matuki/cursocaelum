@@ -22,6 +22,10 @@
 }
 
 
+// Propriedade para que possamos fazer a peristencia usando core data
+@property (weak, nonatomic) NSManagedObjectContext *context;
+
+
 @property (weak) NSMutableArray * contatos;
 
 // Para tipo primitivo, é sempre assign.

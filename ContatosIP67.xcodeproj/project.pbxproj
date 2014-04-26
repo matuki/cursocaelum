@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A507BC37190BE49300ACC1C3 /* Contatos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A507BC35190BE49300ACC1C3 /* Contatos.xcdatamodeld */; };
+		A507BC67190BF0D900ACC1C3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A507BC66190BF0D900ACC1C3 /* CoreData.framework */; };
 		A509293818E6F0F500F9CBA2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A509293718E6F0F500F9CBA2 /* UIKit.framework */; };
 		A509293A18E6F0F500F9CBA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A509293918E6F0F500F9CBA2 /* Foundation.framework */; };
 		A509293C18E6F0F500F9CBA2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A509293B18E6F0F500F9CBA2 /* CoreGraphics.framework */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		1D9258436CF54C15A6D65759 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A507BC36190BE49300ACC1C3 /* Contatos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Contatos.xcdatamodel; sourceTree = "<group>"; };
+		A507BC66190BF0D900ACC1C3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A509293418E6F0F500F9CBA2 /* ContatosIP67.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContatosIP67.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A509293718E6F0F500F9CBA2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A509293918E6F0F500F9CBA2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A507BC67190BF0D900ACC1C3 /* CoreData.framework in Frameworks */,
 				A5AAF84B18F9B8D500139503 /* CoreLocation.framework in Frameworks */,
 				A5E823D018F977C400749BC7 /* MapKit.framework in Frameworks */,
 				A5ED8AC818F091A100D4816F /* MessageUI.framework in Frameworks */,
@@ -97,9 +102,6 @@
 		A509292B18E6F0F400F9CBA2 = {
 			isa = PBXGroup;
 			children = (
-				A5AAF84A18F9B8D500139503 /* CoreLocation.framework */,
-				A5E823CF18F977C400749BC7 /* MapKit.framework */,
-				A5ED8AC718F091A100D4816F /* MessageUI.framework */,
 				A509293D18E6F0F500F9CBA2 /* ContatosIP67 */,
 				A509293618E6F0F500F9CBA2 /* Frameworks */,
 				A509293518E6F0F500F9CBA2 /* Products */,
@@ -118,6 +120,10 @@
 		A509293618E6F0F500F9CBA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A507BC66190BF0D900ACC1C3 /* CoreData.framework */,
+				A5AAF84A18F9B8D500139503 /* CoreLocation.framework */,
+				A5E823CF18F977C400749BC7 /* MapKit.framework */,
+				A5ED8AC718F091A100D4816F /* MessageUI.framework */,
 				A509293718E6F0F500F9CBA2 /* UIKit.framework */,
 				A509293918E6F0F500F9CBA2 /* Foundation.framework */,
 				A509293B18E6F0F500F9CBA2 /* CoreGraphics.framework */,
@@ -137,6 +143,7 @@
 				A509295618E6F51A00F9CBA2 /* FormularioContatoViewController.xib */,
 				A509293E18E6F0F500F9CBA2 /* Supporting Files */,
 				A509295918E70A6000F9CBA2 /* Contato.h */,
+				A507BC35190BE49300ACC1C3 /* Contatos.xcdatamodeld */,
 				A509295A18E70A6100F9CBA2 /* Contato.m */,
 				A509295C18E73F8800F9CBA2 /* ListaContatosViewController.h */,
 				A509295D18E73F8800F9CBA2 /* ListaContatosViewController.m */,
@@ -293,6 +300,7 @@
 				A509295B18E70A6100F9CBA2 /* Contato.m in Sources */,
 				A509295E18E73F8800F9CBA2 /* ListaContatosViewController.m in Sources */,
 				A5E823CD18F976DF00749BC7 /* ContatosNoMapaViewController.m in Sources */,
+				A507BC37190BE49300ACC1C3 /* Contatos.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +420,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A507BC35190BE49300ACC1C3 /* Contatos.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A507BC36190BE49300ACC1C3 /* Contatos.xcdatamodel */,
+			);
+			currentVersion = A507BC36190BE49300ACC1C3 /* Contatos.xcdatamodel */;
+			path = Contatos.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A509292C18E6F0F400F9CBA2 /* Project object */;
 }

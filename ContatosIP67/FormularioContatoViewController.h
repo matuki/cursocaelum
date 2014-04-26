@@ -16,6 +16,9 @@
 // Default é atomic
 //@property (weak) NSMutableArray * contatos;
 
+// Propriedade para que possamos fazer a peristencia usando core data
+@property (strong, nonatomic) NSManagedObjectContext *context;
+
 // Usado na edição
 @property (strong, atomic) Contato * contato;
 

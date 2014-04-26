@@ -9,6 +9,8 @@
 #import "Contato.h"
 
 @implementation Contato
+// Fala para o compilador nao gerar getter e setter dessas variaveis
+@dynamic nome, telefone, email, endereco, site, latitude, longitude, foto;
 
 // Sintetiza nome e direciona para o atributo _nome
 // A partir do XCode 4.4 isso é gerado automaticamente

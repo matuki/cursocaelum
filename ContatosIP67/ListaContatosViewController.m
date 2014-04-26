@@ -82,6 +82,7 @@
     FormularioContatoViewController * form = [[FormularioContatoViewController alloc]init];
     
     form.delegate = self;
+    form.context = self.context;
     // Isso mostraria a tela sem o navigation controler
 //    [self presentViewController:form animated:YES completion:nil];
     
@@ -126,7 +127,11 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Significa que o usuario quer apagar
         // Primeiro se deve apagar o model e depois a view, se nao da pau pois a view consulta o model se for apagada
+        Contato * contato = [self.contatos objectAtIndex:indexPath.row];
         [self.contatos removeObjectAtIndex:indexPath.row];
+        
+        // Aqui tem que forçar o contexto a remover, se nao somente quando o objeto for coletado ele sera apagado no Core Data
+        [self.context deleteObject:contato];
         
         // Açúcar sintatico para criar array @[indexPath]
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
